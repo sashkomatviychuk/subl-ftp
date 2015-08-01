@@ -5,7 +5,7 @@
 #
 # Config:
 # Preferences - Key Bindings User
-# { "keys": ["ctrl+alt+f"], "command": "ftp"}
+# { "keys": ["ctrl+alt+f"], "command": "ftp", "args": {"folder": "path/to/base/projects/dir"}}
 #
 
 # sublime modules
@@ -32,7 +32,7 @@ class Ftp:
 			self.connection = ftplib.FTP(host, login, passwd)
 		except Exception:
 			sublime.status_message("ERROR! FTP connection faild")
-			pass
+			sys.exit()
 
 	def checkConn(self):
 		return self.connection != False
@@ -53,8 +53,6 @@ class Ftp:
 			if not subdir in self.connection.nlst():
 				self.mkdir(subdir)
 			self.mv(subdir)
-
-		self.set_path(path)
 
 	def up(self, file_name):
 		fl = open(file_name, "rb")
