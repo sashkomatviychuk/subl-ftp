@@ -5,7 +5,7 @@
 #
 # Config:
 # Preferences - Key Bindings User
-# { "keys": ["ctrl+f+p"], "command": "subl-ftp"}
+# { "keys": ["ctrl+alt+f"], "command": "ftp"}
 #
 
 # sublime modules
@@ -31,6 +31,7 @@ class Ftp:
 		try:
 			self.connection = ftplib.FTP(host, login, passwd)
 		except Exception:
+			sublime.status_message("ERROR! FTP connection faild")
 			pass
 
 	def checkConn(self):
