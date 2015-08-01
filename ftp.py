@@ -95,6 +95,7 @@ class FtpCommand(sublime_plugin.TextCommand):
 
 		if not ftp.checkConn():
 			sublime.status_message("ERROR! Missing FTP connection")
+			sys.exit()
 
 		ftp.go_dir(ftp_base_folder + folder)
 		ftp.up(active_file)
